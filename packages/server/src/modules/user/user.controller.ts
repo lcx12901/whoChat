@@ -23,6 +23,16 @@ export class UserController {
   @Post('login')
   async login(@Body() loginDTO: LoginDTO) {
     const authResult = await this.authService.checkUserLogin(loginDTO);
-    return this.authService.certificate(authResult);
+    const token = await this.authService.certificate(authResult);
+
+    const { id, userName, email, mobile, avatar } = authResult;
+    return {
+      id,
+      userName,
+      email,
+      mobile,
+      avatar,
+      token: `Bearer ${token}`,
+    };
   }
 }
