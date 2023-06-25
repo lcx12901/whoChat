@@ -52,7 +52,7 @@ export default defineConfig(async () => ({
       ],
     }),
     Unocss({
-      configFile: './uno.config.ts',
+      configFile: '../../uno.config.ts',
     }),
   ],
 
