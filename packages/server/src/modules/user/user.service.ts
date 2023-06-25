@@ -22,7 +22,9 @@ export class UserService {
       .createQueryBuilder('user')
       .where('user.mobile = :mobile', { mobile })
       .getOne();
-    if (hasMobile) throw new BadRequestException('手机号已存在');
+    if (hasMobile) {
+      throw new BadRequestException('手机号已存在');
+    }
   }
 
   /**
@@ -46,7 +48,6 @@ export class UserService {
         mobile,
       }),
     );
-
     return result;
   }
 

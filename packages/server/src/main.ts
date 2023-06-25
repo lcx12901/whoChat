@@ -5,7 +5,9 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 import * as packageConfig from '../package.json';
+import { HttpExecptionFilter } from './filters/http-execption/http-execption.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -14,6 +16,11 @@ async function bootstrap() {
       logger: true,
     }),
   );
+
+  // 全局拦截器
+  app.useGlobalInterceptors(new TransformInterceptor());
+  // 全局过滤器
+  app.useGlobalFilters(new HttpExecptionFilter());
 
   // @ts-ignore
   if (import.meta.env.DEV) {
