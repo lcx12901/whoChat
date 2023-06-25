@@ -14,9 +14,17 @@ export class HttpExecptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
     const message = exception.message;
 
+    const exceptionResponse: any = exception.getResponse();
+    let validatorMessage = exceptionResponse;
+    if (typeof validatorMessage.message === 'object') {
+      validatorMessage = exceptionResponse.message[0];
+    }
+
     response.status(status).send({
       code: status,
-      message,
+      data: {},
+      message:
+        typeof validatorMessage === 'string' ? validatorMessage : message,
     });
   }
 }

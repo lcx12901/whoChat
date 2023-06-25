@@ -8,6 +8,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { TransformInterceptor } from './interceptor/transform/transform.interceptor';
 import * as packageConfig from '../package.json';
 import { HttpExecptionFilter } from './filters/http-execption/http-execption.filter';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -17,6 +18,8 @@ async function bootstrap() {
     }),
   );
 
+  // 数据验证
+  app.useGlobalPipes(new ValidationPipe());
   // 全局拦截器
   app.useGlobalInterceptors(new TransformInterceptor());
   // 全局过滤器
