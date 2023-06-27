@@ -4,7 +4,9 @@
 </script>
 
 <template>
-  <div class="mt-10 container" />
+  <div class="container">
+    <router-view />
+  </div>
 </template>
 
 <style scoped>

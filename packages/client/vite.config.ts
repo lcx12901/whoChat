@@ -22,13 +22,13 @@ export default defineConfig(async () => ({
         // presets
         'vue',
         'vue-router',
+        'pinia',
         {
           axios: [
             // default imports
             ['default', 'axios'], // import { default as axios } from 'axios',
           ],
         },
-        // example type import
         {
           from: 'vue-router',
           imports: ['RouteLocationRaw'],
@@ -68,6 +68,7 @@ export default defineConfig(async () => ({
     alias: {
       '@': join(__dirname, './src'),
     },
+    extensions: ['.js', '.json', '.ts'],
   },
   // to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand
