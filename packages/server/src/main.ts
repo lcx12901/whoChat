@@ -18,6 +18,8 @@ async function bootstrap() {
     }),
   );
 
+  app.enableCors();
+
   // 数据验证
   app.useGlobalPipes(new ValidationPipe());
   // 全局拦截器
