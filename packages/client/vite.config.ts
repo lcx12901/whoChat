@@ -12,6 +12,7 @@ export default defineConfig(async () => ({
     vue(),
     AutoImport({
       dts: true,
+      dirs: ['./src/components'],
       include: [
         /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
         /\.vue$/, /\.vue\?vue/, // .vue

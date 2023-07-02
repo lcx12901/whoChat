@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'JetBrainsMonoNerdFontMono';
+  src: url('./JetBrainsMonoNerdFontMono.ttf');
+  font-weight: normal; 
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TypoGraphica';
+  src: url('./TypoGraphica.ttf.woff');
+  font-weight: normal; 
+  font-style: normal;
+}

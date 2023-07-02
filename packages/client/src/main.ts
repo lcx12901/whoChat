@@ -3,6 +3,7 @@ import App from './App.vue'
 import 'virtual:uno.css'
 import 'uno.css'
 import 'virtual:unocss-devtools'
+import '@/assets/fonts/fonts.css'
 
 import { setupPinia } from './store'
 import router from './router'

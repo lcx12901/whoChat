@@ -4,10 +4,11 @@
 </script>
 
 <template>
-  <div class="container">
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
 <style scoped>
+*, :where(.css-dev-only-do-not-override-j6gjt1).ant-input {
+  font-family: "JetBrainsMonoNerdFontMono";
+}
 </style>

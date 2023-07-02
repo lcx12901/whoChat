@@ -1,3 +1,6 @@
 {
-    "extends": ["@antfu", "@unocss", "./.eslintrc-auto-import.json"]
+    "extends": ["@antfu", "@unocss", "./.eslintrc-auto-import.json"],
+    "rules": {
+        "no-console": "off"
+    }
 }
