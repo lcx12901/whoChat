@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 import type { Login } from '@/api/user/type'
 import { login } from '@/api/user'
 
@@ -9,11 +10,9 @@ const LoginState = ref<Login>({
 })
 
 async function handleFinish() {
-  await login(LoginState.value)
-}
-
-function handleFinishFailed() {
-  console.log('nnkj')
+  const { code, message: msg } = await login(LoginState.value)
+  if (code === 200)
+    message.success('登录成功')
 }
 </script>
 
@@ -21,7 +20,7 @@ function handleFinishFailed() {
   <div class="logo-page h-screen w-screen">
     <div class="bg fixed h-screen w-screen bg-cover bg-repeat-unset transition duration-500" />
     <div
-      class="login-container absolute left-5% h-100% w-420px flex flex-col flex-items-center bg-black bg-op-50 shadow-black shadow-lg backdrop-blur-10px backdrop-filter"
+      class="login-container fixed left-5% h-100% w-420px flex flex-col flex-items-center bg-black bg-op-50 shadow-black shadow-lg backdrop-blur-10px backdrop-filter"
     >
       <p class="logo-text text-center text-size-4xl font-bold text-white text-op-70">
         whoChat
@@ -29,7 +28,6 @@ function handleFinishFailed() {
       <a-form
         :model="LoginState"
         @finish="handleFinish"
-        @finish-failed="handleFinishFailed"
       >
         <a-form-item>
           <a-input

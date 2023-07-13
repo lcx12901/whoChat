@@ -24,6 +24,12 @@ const defaultConfig: axiosConfig = {
   timestamp: false,
 }
 
+interface Result<T> {
+  code: number
+  data: T
+  message: string
+}
+
 const axiosCancel = new AxiosCancel()
 
 // const axiosLoading = new AxiosLoading()
@@ -82,24 +88,24 @@ service.interceptors.response.use(
 )
 
 const request = {
-  async get<T = any>(url: string, data?: any, config?: axiosConfig): Promise<T> {
+  async get<T = any>(url: string, data?: any, config?: axiosConfig): Promise<Result<T>> {
     return await request.request('GET', url, { params: data }, config)
   },
-  async post<T = any>(url: string, data?: any, config?: axiosConfig): Promise<T> {
+  async post<T = any>(url: string, data?: any, config?: axiosConfig): Promise<Result<T>> {
     return await request.request('POST', url, { data }, config)
   },
-  async put<T = any>(url: string, data?: any, config?: axiosConfig): Promise<T> {
+  async put<T = any>(url: string, data?: any, config?: axiosConfig): Promise<Result<T>> {
     return await request.request('PUT', url, { data }, config)
   },
-  async delete<T = any>(url: string, data?: any, config?: axiosConfig): Promise<T> {
+  async delete<T = any>(url: string, data?: any, config?: axiosConfig): Promise<Result<T>> {
     return await request.request('DELETE', url, { params: data }, config)
   },
-  request<T = any>(method = 'GET', url: string, data?: any, config?: axiosConfig): Promise<T> {
+  request<T = any>(method = 'GET', url: string, data?: any, config?: axiosConfig): Promise<Result<T>> {
     const options = Object.assign({}, defaultConfig, config)
     return new Promise((resolve, reject) => {
       service({ method, url, ...data, requestOptions: options })
         .then((res) => {
-          resolve(res as unknown as Promise<T>)
+          resolve(res as unknown as Promise<Result<T>>)
         })
         .catch((e: Error | AxiosError) => {
           reject(e)
